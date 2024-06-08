@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 async function connectDB() {
   try {
-    await mongoose.connect(process.env.LOCAL_URI);
+    await mongoose.connect(process.env.MONGO_URI);
     //.connect('mongodb://user:password@127.0.0.1:27017/test');
   } catch (err) {
     console.error(err.message);
@@ -11,7 +11,7 @@ async function connectDB() {
   }
   const dbConnection = mongoose.connection;
   dbConnection.once("open", (_) => {
-    console.log(`Database connected: ${process.env.LOCAL_URI}`);
+    console.log(`Database connected: ${process.env.MONGO_URI}`);
   });
   dbConnection.on("error", (err) => {
     console.error(`connection error: ${err}`);
